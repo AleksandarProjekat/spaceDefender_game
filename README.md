@@ -101,10 +101,10 @@ Na većim rezolucijama i sa više asteroida vidi se razlika u opterećenju CPU-a
 ##  Screenshots
 
 ### Game Over
-![Game Over](images/game_over.png)
+![Game Over](Images/game_over.png)
 
 ### You Won
-![You Won](images/you_won.png)
+![You Won](Images/you_won.png)
 
 ---
 
