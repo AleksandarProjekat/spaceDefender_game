@@ -3,6 +3,9 @@
 // Flagovi: --asteroids N  --target N  --width W  --height H
 // Prozor ostaje otvoren dok ne pritisnes ESC/Q ili ga ne zatvoris.
 
+// Aleksandar Vig
+
+
 #include <opencv2/opencv.hpp>
 #include <vector>
 #include <random>
@@ -48,7 +51,7 @@ int main(int argc, char** argv){
     int shipW = 40;
     int shipX = W/2;
     int shipY = H-40;
-    int shipStep = 35; // 🚀 brzi avion (pre je bilo 12)
+    int shipStep = 35; // brzi avion (pre je bilo 12)
 
     // RNG i distribucije
     std::mt19937 rng{ std::random_device{}() };
@@ -116,7 +119,7 @@ int main(int argc, char** argv){
         // Logika
         if(!over){
             // kretanje broda — brzo + blago ubrzanje sa score-om (kao u paralelnoj)
-            int step_now = shipStep + score/8; // 🚀 brže i brže
+            int step_now = shipStep + score/8; // brže i brže
             if(leftHeld && !rightHeld) shipX -= step_now;
             else if(rightHeld && !leftHeld) shipX += step_now;
             shipX = std::clamp(shipX, shipW, W - shipW);

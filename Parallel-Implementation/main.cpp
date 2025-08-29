@@ -1,7 +1,10 @@
-// Space Defender — Paralelna (OpenCV + pthreads), po PDF-u
-// Avion (brod) se sada kreće VEOMA brzo (step = 35) i dodatno ubrzava sa score-om (+score/8).
-// Kontrole: A/D ili ←/→ (kretanje), W/SPACE (pucaj), R (restart), ESC/Q (izlaz).
-// Win/Lose: prozor ostaje otvoren; možeš više puta da restartuješ sa R.
+// Space Defender — Paralelno (poboljsana, brzi avion)
+// Kontrole: A/D ili strelice (levo/desno), W ili SPACE (pucaj), R (restart), ESC/Q (izlaz).
+// Flagovi: --asteroids N  --target N  --width W  --height H
+// Prozor ostaje otvoren dok ne pritisnes ESC/Q ili ga ne zatvoris.
+
+// Aleksandar Vig
+
 
 #include <opencv2/opencv.hpp>
 #include <vector>
@@ -15,7 +18,7 @@
 
 struct Bullet { int x{0}, y{0}; int v{12}; bool active{false}; };
 struct Asteroid { int x{0}, y{0}, r{20}; float v{2.5f}; bool alive{true}; };
-struct Ship { int x{0}, y{0}, w{40}; int step{35}; }; // 🚀 još brži brod (35 px po impulsu)
+struct Ship { int x{0}, y{0}, w{40}; int step{35}; }; // još brži brod (35 px po impulsu)
 
 struct InputState {
     std::atomic<int> move_impulse{0};   // -1 = levo, +1 = desno, 0 = ništa
@@ -102,7 +105,7 @@ void* ship_worker(void* arg){
         if(gs->game_active){
             int dir = in->move_impulse.exchange(0);
             if(dir != 0){
-                // 🚀 brži avion: osnovni step + pojačanje sa score-om
+                // brži avion: osnovni step + pojačanje sa score-om
                 int step_now = gs->ship.step + gs->score/8;
                 gs->ship.x += dir * step_now;
                 gs->ship.x = std::clamp(gs->ship.x, gs->ship.w, gs->W - gs->ship.w);
