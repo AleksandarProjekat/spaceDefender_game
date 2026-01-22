@@ -1,4 +1,4 @@
-# 🛰️ Space Defender
+#  Space Defender
 
 **Space Defender** je mini 2D arkadna igra napisana u **C++** koristeći **OpenCV**.  
 Cilj igre je da oboriš dovoljno asteroida pre nego što oni stignu do dna ekrana.  
@@ -31,7 +31,7 @@ SpaceDefender/
 ├── parallel/            # Paralelna implementacija
 │   ├── main.cpp
 │   └── Makefile
-├── images/              # Screenshots
+├── Images/              # Screenshots
 │   ├── game_over.png
 │   └── you_won.png
 └── README.md
